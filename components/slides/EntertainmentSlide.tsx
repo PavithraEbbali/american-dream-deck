@@ -11,7 +11,7 @@ const attractions = [
     stat: "#1",
     statLabel: "Largest Indoor Water Park in North America",
     desc: "Wave pools, world-record waterslides, and a surf simulator — all indoors, all year round.",
-    quote: "The only place on earth where you can ski in the morning and surf in the afternoon — without ever going outside.",
+    quote: "One destination. Indoor skiing, surfing, and theme parks — all under one roof, all year round.",
     video: "/media/videos/ent-water.mp4",
     color: "#0ea5e9",
   },
@@ -33,7 +33,7 @@ const attractions = [
     stat: "Only",
     statLabel: "Indoor Ski Resort in North America",
     desc: "Real snow. Real slopes. Year-round skiing — as seen with Lindsey Vonn & Eli Manning.",
-    quote: "Lindsey Vonn skied here. Eli Manning snowboarded here. Your brand belongs here too.",
+    quote: "Lindsey Vonn skied here. Eli Manning snowboarded here. American Dream attracts the world's biggest names.",
     video: "/media/videos/ent-ski.mp4",
     color: "#a8d8ea",
   },
@@ -95,7 +95,7 @@ export default function EntertainmentSlide() {
       </AnimatePresence>
 
       <div className="absolute inset-0 z-[1]" style={{
-        background: "linear-gradient(to right, rgba(0,0,0,0.92) 0%, rgba(0,0,0,0.72) 50%, rgba(0,0,0,0.3) 100%)"
+        background: "linear-gradient(to right, rgba(0,0,0,0.92) 0%, rgba(0,0,0,0.85) 60%, rgba(0,0,0,0.7) 100%)"
       }} />
 
       <motion.div
@@ -173,18 +173,22 @@ export default function EntertainmentSlide() {
               </h2>
 
               <div style={{
-                display: "flex", alignItems: "flex-end",
-                gap: "0.6rem", marginBottom: "0.6rem"
+                display: "flex", alignItems: "center",
+                gap: "0.75rem", marginBottom: "0.6rem",
+                padding: "0.5rem 0.75rem",
+                border: `1px solid ${current.color}40`,
+                background: `${current.color}10`,
+                width: "fit-content"
               }}>
                 <span style={{
                   fontFamily: "'Playfair Display', serif",
-                  fontSize: "2.2rem", color: current.color, lineHeight: 1
+                  fontSize: "1.8rem", color: current.color, lineHeight: 1
                 }}>
                   {current.stat}
                 </span>
                 <span style={{
-                  color: "rgba(255,255,255,0.6)", fontSize: "0.75rem",
-                  maxWidth: "180px", lineHeight: 1.4, marginBottom: "0.15rem"
+                  color: "rgba(255,255,255,0.8)", fontSize: "0.72rem",
+                  maxWidth: "200px", lineHeight: 1.4, fontWeight: 500
                 }}>
                   {current.statLabel}
                 </span>
@@ -235,12 +239,12 @@ export default function EntertainmentSlide() {
                     </span>
                     <div>
                       <span style={{
-                        color: "rgba(255,255,255,0.8)",
-                        fontSize: "0.75rem", fontWeight: 500
+                       color: "white",
+                       fontSize: "0.75rem", fontWeight: 500
                       }}>
                         {item.name}
                       </span>
-                      <span style={{ color: "rgba(255,255,255,0.35)", fontSize: "0.68rem" }}>
+                      <span style={{ color: "rgba(255,255,255,0.6)", fontSize: "0.68rem" }}>
                         {" "}— {item.detail}
                       </span>
                     </div>

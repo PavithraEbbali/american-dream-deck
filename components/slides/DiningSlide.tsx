@@ -164,32 +164,6 @@ export default function DiningSlide() {
                 </p>
               </motion.div>
             ))}
-
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: inView ? 1 : 0 }}
-              transition={{ delay: 1.3 }}
-              style={{
-                height: "80px", overflow: "hidden",
-                position: "relative", cursor: "none",
-                backgroundImage: "url('/media/images/dining-bg.jpg')",
-                backgroundSize: "cover", backgroundPosition: "center",
-              }}
-            >
-              <div style={{
-                position: "absolute", inset: 0,
-                background: "rgba(0,0,0,0.5)",
-                display: "flex", alignItems: "center",
-                justifyContent: "center"
-              }}>
-                <span style={{
-                  color: "#C9A84C", fontSize: "0.58rem",
-                  letterSpacing: "0.2em", textTransform: "uppercase"
-                }}>
-                  Culinary Diversity →
-                </span>
-              </div>
-            </motion.div>
           </motion.div>
         </div>
       </div>

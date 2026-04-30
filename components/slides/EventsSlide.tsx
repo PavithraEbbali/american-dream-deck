@@ -73,7 +73,7 @@ export default function EventsSlide() {
         autoPlay muted loop playsInline
       />
       <div className="absolute inset-0 z-[1]" style={{
-        background: "linear-gradient(to right, rgba(0,0,0,0.94) 0%, rgba(0,0,0,0.78) 50%, rgba(0,0,0,0.35) 100%)"
+        background: "linear-gradient(to right, rgba(0,0,0,0.94) 0%, rgba(0,0,0,0.88) 60%, rgba(0,0,0,0.75) 100%)"
       }} />
 
       <div className="slide-inner">
@@ -214,6 +214,7 @@ export default function EventsSlide() {
                 padding: "0.85rem 1rem",
                 border: "1px solid rgba(201,168,76,0.2)",
                 background: "rgba(201,168,76,0.04)",
+                marginBottom: "0.5rem",
               }}>
                 <p style={{
                   color: "#C9A84C", fontSize: "0.58rem",

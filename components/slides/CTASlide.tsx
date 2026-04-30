@@ -6,17 +6,14 @@ import { motion } from "framer-motion";
 const paths = [
   {
     title: "Retail Leasing",
-    desc: "Flagship, luxury, pop-up, or F&B — secure your presence in North America's most visited destination.",
     cta: "Secure Your Flagship Presence",
   },
   {
     title: "Sponsorship & Partnerships",
-    desc: "Brand activations, naming rights, experiential campaigns — own your moment in front of 40M visitors.",
     cta: "Own the Moment. Own the Market.",
   },
   {
     title: "Events & Venue Booking",
-    desc: "Concerts, product launches, corporate events, fight nights — the most unexpected venue in America.",
     cta: "Launch Your Next Global Event Here",
   },
 ];
@@ -37,11 +34,11 @@ export default function CTASlide() {
 
   const validate = () => {
     const newErrors: { [key: string]: string } = {};
-    if (!formState.name.trim()) newErrors.name = "Name is required";
-    if (!formState.email.trim()) newErrors.email = "Email is required";
+    if (!formState.name.trim()) newErrors.name = "Required";
+    if (!formState.email.trim()) newErrors.email = "Required";
     else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formState.email))
-      newErrors.email = "Please enter a valid email address";
-    if (!formState.interest) newErrors.interest = "Please select an option";
+      newErrors.email = "Invalid email";
+    if (!formState.interest) newErrors.interest = "Required";
     return newErrors;
   };
 
@@ -103,7 +100,7 @@ export default function CTASlide() {
           >
             <span className="col-label">Choose Your Path</span>
 
-            <div style={{ display: "flex", flexDirection: "column", gap: "0.5rem", marginBottom: "1.25rem" }}>
+            <div style={{ display: "flex", flexDirection: "column", gap: "0.35rem", marginBottom: "0.75rem" }}>
               {paths.map((path, i) => (
                 <motion.div
                   key={path.title}
@@ -113,29 +110,25 @@ export default function CTASlide() {
                   onMouseEnter={() => setHoveredPath(i)}
                   onMouseLeave={() => setHoveredPath(null)}
                   style={{
-                    padding: "0.85rem 1rem",
+                    padding: "0.6rem 0.85rem",
                     border: `1px solid ${hoveredPath === i ? "#C9A84C" : "rgba(255,255,255,0.08)"}`,
                     background: hoveredPath === i ? "rgba(201,168,76,0.05)" : "rgba(255,255,255,0.02)",
                     cursor: "none", transition: "all 0.3s ease",
+                    display: "flex", justifyContent: "space-between", alignItems: "center"
                   }}
                 >
-                  <h3 style={{
+                  <span style={{
                     color: hoveredPath === i ? "#C9A84C" : "white",
-                    fontSize: "0.8rem", fontWeight: 600,
-                    marginBottom: "0.3rem", transition: "color 0.3s ease"
+                    fontSize: "0.75rem", fontWeight: 600,
+                    transition: "color 0.3s ease"
                   }}>
                     {path.title}
-                  </h3>
-                  <p style={{
-                    color: "rgba(255,255,255,0.45)",
-                    fontSize: "0.68rem", lineHeight: 1.5, marginBottom: "0.3rem"
-                  }}>
-                    {path.desc}
-                  </p>
+                  </span>
                   <span style={{
                     color: hoveredPath === i ? "#C9A84C" : "rgba(255,255,255,0.2)",
-                    fontSize: "0.58rem", letterSpacing: "0.15em",
-                    textTransform: "uppercase", transition: "color 0.3s ease"
+                    fontSize: "0.58rem", letterSpacing: "0.1em",
+                    textTransform: "uppercase", transition: "color 0.3s ease",
+                    whiteSpace: "nowrap", marginLeft: "0.5rem"
                   }}>
                     {path.cta} →
                   </span>
@@ -143,30 +136,41 @@ export default function CTASlide() {
               ))}
             </div>
 
-            <div style={{ display: "flex", gap: "2rem" }}>
+            {/* Contact info */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: inView ? 1 : 0 }}
+              transition={{ delay: 0.9 }}
+              style={{
+                padding: "0.75rem",
+                border: "1px solid rgba(255,255,255,0.06)",
+                background: "rgba(255,255,255,0.02)",
+                display: "flex", gap: "2rem"
+              }}
+            >
               <div>
                 <p style={{
-                  color: "rgba(255,255,255,0.2)", fontSize: "0.52rem",
-                  letterSpacing: "0.2em", textTransform: "uppercase", marginBottom: "0.25rem"
+                  color: "rgba(255,255,255,0.3)", fontSize: "0.5rem",
+                  letterSpacing: "0.2em", textTransform: "uppercase", marginBottom: "0.2rem"
                 }}>
                   Email
                 </p>
-                <p style={{ color: "rgba(255,255,255,0.55)", fontSize: "0.7rem" }}>
+                <p style={{ color: "rgba(255,255,255,0.7)", fontSize: "0.68rem" }}>
                   leasing@americandream.com
                 </p>
               </div>
               <div>
                 <p style={{
-                  color: "rgba(255,255,255,0.2)", fontSize: "0.52rem",
-                  letterSpacing: "0.2em", textTransform: "uppercase", marginBottom: "0.25rem"
+                  color: "rgba(255,255,255,0.3)", fontSize: "0.5rem",
+                  letterSpacing: "0.2em", textTransform: "uppercase", marginBottom: "0.2rem"
                 }}>
                   Location
                 </p>
-                <p style={{ color: "rgba(255,255,255,0.55)", fontSize: "0.7rem" }}>
+                <p style={{ color: "rgba(255,255,255,0.7)", fontSize: "0.68rem" }}>
                   East Rutherford, NJ 07073
                 </p>
               </div>
-            </div>
+            </motion.div>
           </motion.div>
 
           {/* Right — form */}
@@ -179,70 +183,108 @@ export default function CTASlide() {
               <div style={{
                 border: "1px solid rgba(255,255,255,0.08)",
                 background: "rgba(0,0,0,0.5)",
-                padding: "1.25rem"
+                padding: "1rem"
               }}>
                 {/* Form header */}
                 <div style={{
-                  marginBottom: "1rem",
-                  paddingBottom: "0.75rem",
-                  borderBottom: "1px solid rgba(255,255,255,0.06)"
+                  marginBottom: "0.75rem",
+                  paddingBottom: "0.6rem",
+                  borderBottom: "1px solid rgba(255,255,255,0.06)",
+                  display: "flex", justifyContent: "space-between", alignItems: "baseline"
                 }}>
-                  <p style={{
-                    color: "white", fontSize: "0.85rem",
-                    fontWeight: 600, marginBottom: "0.2rem"
-                  }}>
+                  <p style={{ color: "white", fontSize: "0.82rem", fontWeight: 600 }}>
                     Get in Touch
                   </p>
-                  <p style={{ color: "rgba(255,255,255,0.35)", fontSize: "0.65rem" }}>
-                    Our team responds within 24 hours.
+                  <p style={{ color: "rgba(255,255,255,0.3)", fontSize: "0.6rem" }}>
+                    We respond within 24hrs
                   </p>
                 </div>
 
-                <div style={{ display: "flex", flexDirection: "column", gap: "0.75rem" }}>
-                  {[
-                    { key: "name", label: "Full Name", placeholder: "John Smith", type: "text" },
-                    { key: "company", label: "Company", placeholder: "Brand / Agency / Company", type: "text" },
-                    { key: "email", label: "Email Address", placeholder: "john@company.com", type: "email" },
-                  ].map((field) => (
-                    <div key={field.key}>
-                      <label style={{
-                        color: "rgba(255,255,255,0.35)", fontSize: "0.52rem",
-                        letterSpacing: "0.18em", textTransform: "uppercase",
-                        display: "block", marginBottom: "0.35rem"
-                      }}>
-                        {field.label}
-                      </label>
-                      <input
-                        type={field.type}
-                        placeholder={field.placeholder}
-                        value={formState[field.key as keyof typeof formState]}
-                        onChange={(e) => {
-                          setFormState((prev) => ({ ...prev, [field.key]: e.target.value }));
-                          setErrors((prev) => ({ ...prev, [field.key]: "" }));
-                        }}
-                        style={{
-                          width: "100%",
-                          background: "rgba(255,255,255,0.05)",
-                          border: `1px solid ${errors[field.key] ? "#ef4444" : "rgba(255,255,255,0.1)"}`,
-                          color: "white", fontSize: "0.78rem",
-                          padding: "0.55rem 0.75rem", outline: "none",
-                        }}
-                      />
-                      {errors[field.key] && (
-                        <p style={{ color: "#ef4444", fontSize: "0.58rem", marginTop: "0.2rem" }}>
-                          {errors[field.key]}
-                        </p>
-                      )}
-                    </div>
-                  ))}
+                <div style={{ display: "flex", flexDirection: "column", gap: "0.5rem" }}>
+                  {/* Name + Company side by side */}
+                  <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "0.5rem" }}>
+                    {[
+                      { key: "name", label: "Full Name", placeholder: "John Smith", type: "text" },
+                      { key: "company", label: "Company", placeholder: "Brand / Agency", type: "text" },
+                    ].map((field) => (
+                      <div key={field.key}>
+                        <label style={{
+                          color: "rgba(255,255,255,0.35)", fontSize: "0.5rem",
+                          letterSpacing: "0.18em", textTransform: "uppercase",
+                          display: "block", marginBottom: "0.25rem"
+                        }}>
+                          {field.label}
+                          {errors[field.key] && (
+                            <span style={{ color: "#ef4444", marginLeft: "0.4rem" }}>
+                              — {errors[field.key]}
+                            </span>
+                          )}
+                        </label>
+                        <input
+                          type={field.type}
+                          placeholder={field.placeholder}
+                          value={formState[field.key as keyof typeof formState]}
+                          onChange={(e) => {
+                            setFormState((prev) => ({ ...prev, [field.key]: e.target.value }));
+                            setErrors((prev) => ({ ...prev, [field.key]: "" }));
+                          }}
+                          style={{
+                            width: "100%",
+                            background: "rgba(255,255,255,0.05)",
+                            border: `1px solid ${errors[field.key] ? "#ef4444" : "rgba(255,255,255,0.1)"}`,
+                            color: "white", fontSize: "0.75rem",
+                            padding: "0.45rem 0.65rem", outline: "none",
+                          }}
+                        />
+                      </div>
+                    ))}
+                  </div>
 
+                  {/* Email */}
                   <div>
                     <label style={{
-                      color: "rgba(255,255,255,0.35)", fontSize: "0.52rem",
+                      color: "rgba(255,255,255,0.35)", fontSize: "0.5rem",
                       letterSpacing: "0.18em", textTransform: "uppercase",
-                      display: "block", marginBottom: "0.35rem"
+                      display: "block", marginBottom: "0.25rem"
+                    }}>
+                      Email Address
+                      {errors.email && (
+                        <span style={{ color: "#ef4444", marginLeft: "0.4rem" }}>
+                          — {errors.email}
+                        </span>
+                      )}
+                    </label>
+                    <input
+                      type="email"
+                      placeholder="john@company.com"
+                      value={formState.email}
+                      onChange={(e) => {
+                        setFormState((prev) => ({ ...prev, email: e.target.value }));
+                        setErrors((prev) => ({ ...prev, email: "" }));
+                      }}
+                      style={{
+                        width: "100%",
+                        background: "rgba(255,255,255,0.05)",
+                        border: `1px solid ${errors.email ? "#ef4444" : "rgba(255,255,255,0.1)"}`,
+                        color: "white", fontSize: "0.75rem",
+                        padding: "0.45rem 0.65rem", outline: "none",
+                      }}
+                    />
+                  </div>
+
+                  {/* Interest */}
+                  <div>
+                    <label style={{
+                      color: "rgba(255,255,255,0.35)", fontSize: "0.5rem",
+                      letterSpacing: "0.18em", textTransform: "uppercase",
+                      display: "block", marginBottom: "0.25rem"
                     }}>
                       I&apos;m Interested In
+                      {errors.interest && (
+                        <span style={{ color: "#ef4444", marginLeft: "0.4rem" }}>
+                          — {errors.interest}
+                        </span>
+                      )}
                     </label>
                     <select
                       value={formState.interest}
@@ -254,7 +296,7 @@ export default function CTASlide() {
                         width: "100%", background: "#111",
                         border: `1px solid ${errors.interest ? "#ef4444" : "rgba(255,255,255,0.1)"}`,
                         color: formState.interest ? "white" : "rgba(255,255,255,0.3)",
-                        fontSize: "0.78rem", padding: "0.55rem 0.75rem",
+                        fontSize: "0.75rem", padding: "0.45rem 0.65rem",
                         outline: "none", cursor: "none",
                       }}
                     >
@@ -265,11 +307,6 @@ export default function CTASlide() {
                       <option value="events" style={{ background: "#111" }}>Events & Venue Booking</option>
                       <option value="popup" style={{ background: "#111" }}>Pop-Up Activation</option>
                     </select>
-                    {errors.interest && (
-                      <p style={{ color: "#ef4444", fontSize: "0.58rem", marginTop: "0.2rem" }}>
-                        {errors.interest}
-                      </p>
-                    )}
                   </div>
 
                   <button
@@ -295,7 +332,7 @@ export default function CTASlide() {
                   padding: "3rem", textAlign: "center",
                   display: "flex", flexDirection: "column",
                   alignItems: "center", justifyContent: "center",
-                  minHeight: "320px"
+                  minHeight: "280px"
                 }}
               >
                 <div style={{ fontSize: "2.5rem", marginBottom: "1rem" }}>✨</div>
@@ -309,16 +346,10 @@ export default function CTASlide() {
                   color: "rgba(255,255,255,0.5)", fontSize: "0.8rem",
                   lineHeight: 1.6, maxWidth: "240px"
                 }}>
-                  Our team will be in touch within 24 hours to discuss your opportunity at American Dream.
+                  Our team will be in touch within 24 hours.
                 </p>
-                <div style={{
-                  width: "36px", height: "1px",
-                  background: "#C9A84C", margin: "1.25rem auto 1rem"
-                }} />
-                <p style={{
-                  color: "rgba(255,255,255,0.2)", fontSize: "0.58rem",
-                  letterSpacing: "0.2em", textTransform: "uppercase"
-                }}>
+                <div style={{ width: "36px", height: "1px", background: "#C9A84C", margin: "1.25rem auto 1rem" }} />
+                <p style={{ color: "rgba(255,255,255,0.2)", fontSize: "0.58rem", letterSpacing: "0.2em", textTransform: "uppercase" }}>
                   Not a Mall. A Global Stage.
                 </p>
               </motion.div>

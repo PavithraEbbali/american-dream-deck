@@ -138,16 +138,16 @@ export default function HeroSlide({ onEnter }: Props) {
           initial={{ opacity: 0 }} animate={{ opacity: 1 }}
           transition={{ delay: 1.6 }}
           style={{
-            position: "absolute", bottom: "2.5rem", left: "5rem",
+            marginTop: "1rem",
             display: "flex", alignItems: "center", gap: "1rem"
           }}
         >
           <div style={{ width: "1px", height: "36px", background: "rgba(201,168,76,0.3)" }} />
           <div>
-            <p style={{ color: "rgba(255,255,255,0.35)", fontSize: "0.58rem", letterSpacing: "0.2em", textTransform: "uppercase" }}>
+            <p style={{ color: "rgba(255,255,255,0.75)", fontSize: "0.62rem", letterSpacing: "0.15em", textTransform: "uppercase" }}>
               2nd Largest Mall in the USA
             </p>
-            <p style={{ color: "rgba(255,255,255,0.35)", fontSize: "0.58rem", letterSpacing: "0.2em", textTransform: "uppercase", marginTop: "0.2rem" }}>
+            <p style={{ color: "#C9A84C", fontSize: "0.62rem", letterSpacing: "0.15em", textTransform: "uppercase", marginTop: "0.2rem" }}>
               Minutes from Manhattan
             </p>
           </div>
