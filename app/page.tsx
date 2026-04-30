@@ -1,65 +1,114 @@
-import Image from "next/image";
+"use client";
+
+import { useState, useEffect, useRef } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import HeroSlide from "@/components/slides/HeroSlide";
+import WhyHereSlide from "@/components/slides/WhyHereSlide";
+import RetailSlide from "@/components/slides/RetailSlide";
+import LuxurySlide from "@/components/slides/LuxurySlide";
+import DiningSlide from "@/components/slides/DiningSlide";
+import EntertainmentSlide from "@/components/slides/EntertainmentSlide";
+import EventsSlide from "@/components/slides/EventsSlide";
+import CTASlide from "@/components/slides/CTASlide";
+import DeckNav from "@/components/deck/DeckNav";
+import Cursor from "@/components/ui/Cursor";
+
+const slides = [
+  { id: "hero", label: "Home" },
+  { id: "why-here", label: "Why Here" },
+  { id: "retail", label: "Retail" },
+  { id: "luxury", label: "Luxury" },
+  { id: "dining", label: "Dining" },
+  { id: "entertainment", label: "Entertainment" },
+  { id: "events", label: "Events" },
+  { id: "contact", label: "Contact" },
+];
 
 export default function Home() {
+  const [currentSlide, setCurrentSlide] = useState(0);
+  const [isTransitioning, setIsTransitioning] = useState(false);
+  const touchStartY = useRef(0);
+
+  const goToSlide = (index: number) => {
+    if (isTransitioning || index === currentSlide) return;
+    if (index < 0 || index >= slides.length) return;
+    setIsTransitioning(true);
+    setCurrentSlide(index);
+    setTimeout(() => setIsTransitioning(false), 1000);
+  };
+
+  useEffect(() => {
+    const handleWheel = (e: WheelEvent) => {
+      e.preventDefault();
+      if (isTransitioning) return;
+      if (e.deltaY > 30) goToSlide(currentSlide + 1);
+      else if (e.deltaY < -30) goToSlide(currentSlide - 1);
+    };
+
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "ArrowDown" || e.key === "ArrowRight") goToSlide(currentSlide + 1);
+      if (e.key === "ArrowUp" || e.key === "ArrowLeft") goToSlide(currentSlide - 1);
+    };
+
+    const handleTouchStart = (e: TouchEvent) => {
+      touchStartY.current = e.touches[0].clientY;
+    };
+
+    const handleTouchEnd = (e: TouchEvent) => {
+      const diff = touchStartY.current - e.changedTouches[0].clientY;
+      if (Math.abs(diff) > 50) {
+        if (diff > 0) goToSlide(currentSlide + 1);
+        else goToSlide(currentSlide - 1);
+      }
+    };
+
+    window.addEventListener("wheel", handleWheel, { passive: false });
+    window.addEventListener("keydown", handleKeyDown);
+    window.addEventListener("touchstart", handleTouchStart);
+    window.addEventListener("touchend", handleTouchEnd);
+
+    return () => {
+      window.removeEventListener("wheel", handleWheel);
+      window.removeEventListener("keydown", handleKeyDown);
+      window.removeEventListener("touchstart", handleTouchStart);
+      window.removeEventListener("touchend", handleTouchEnd);
+    };
+  }, [currentSlide, isTransitioning]);
+
+  const slideComponents = [
+    <HeroSlide key="hero" onEnter={() => goToSlide(1)} />,
+    <WhyHereSlide key="why" />,
+    <RetailSlide key="retail" />,
+    <LuxurySlide key="luxury" />,
+    <DiningSlide key="dining" />,
+    <EntertainmentSlide key="entertainment" />,
+    <EventsSlide key="events" />,
+    <CTASlide key="cta" />,
+  ];
+
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+    <>
+      <Cursor />
+      <DeckNav
+        slides={slides}
+        currentSlide={currentSlide}
+        onNavigate={goToSlide}
+        onLogoClick={() => goToSlide(0)}
+      />
+      <div className="relative" style={{ width: "100vw", height: "100vh", overflow: "hidden", background: "#0A0A0A" }}>
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={currentSlide}
+            initial={{ opacity: 0, y: 40 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -40 }}
+            transition={{ duration: 0.8, ease: [0.25, 0.46, 0.45, 0.94] }}
+            style={{ position: "absolute", inset: 0 }}
           >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
-    </div>
+            {slideComponents[currentSlide]}
+          </motion.div>
+        </AnimatePresence>
+      </div>
+    </>
   );
 }
