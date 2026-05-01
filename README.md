@@ -10,7 +10,7 @@ Built as a submission for the **Senior Frontend Engineer & AI-Powered Interactiv
 
 ## 🔗 Live Demo
 
-[View Live Deck →](YOUR_VERCEL_URL_HERE)
+[View Live Deck →](https://american-dream-deck-eta.vercel.app/)
 
 ---
 
