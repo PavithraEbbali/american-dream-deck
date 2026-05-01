@@ -32,9 +32,9 @@ const attractions = [
     title: "Big SNOW",
     stat: "Only",
     statLabel: "Indoor Ski Resort in North America",
-    desc: "Real snow. Real slopes. Year-round skiing — as seen with Lindsey Vonn & Eli Manning.",
+    desc: "Real snow. Real slopes. 365 days a year — the only indoor ski resort in North America.",
     quote: "Lindsey Vonn skied here. Eli Manning snowboarded here. American Dream attracts the world's biggest names.",
-    video: "/media/videos/ent-ski.mp4",
+    video: "/media/videos/ent-ski1.mp4",
     color: "#a8d8ea",
   },
   {
