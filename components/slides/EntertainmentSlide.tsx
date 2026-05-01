@@ -176,9 +176,6 @@ export default function EntertainmentSlide() {
                 display: "flex", alignItems: "center",
                 gap: "0.75rem", marginBottom: "0.6rem",
                 padding: "0.5rem 0.75rem",
-                border: `1px solid ${current.color}40`,
-                background: `${current.color}10`,
-                width: "fit-content"
               }}>
                 <span style={{
                   fontFamily: "'Playfair Display', serif",

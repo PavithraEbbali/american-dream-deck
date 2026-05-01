@@ -145,7 +145,7 @@ export default function LuxurySlide() {
             initial={{ opacity: 0, x: 20 }}
             animate={{ opacity: inView ? 1 : 0, x: inView ? 0 : 20 }}
             transition={{ delay: 0.7 }}
-            style={{ display: "flex", flexDirection: "column", gap: "0.75rem" }}
+            style={{ display: "flex", flexDirection: "column", gap: "0.5rem" }}
           >
             {pillars.map((pillar, i) => (
               <motion.div
@@ -155,7 +155,7 @@ export default function LuxurySlide() {
                 transition={{ delay: 0.8 + i * 0.15 }}
                 style={{
                   display: "flex", gap: "1rem",
-                  paddingBottom: "0.75rem",
+                  paddingBottom: "0.5rem",
                   borderBottom: "1px solid rgba(255,255,255,0.07)"
                 }}
               >

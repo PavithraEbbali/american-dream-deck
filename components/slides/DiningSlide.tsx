@@ -41,7 +41,7 @@ export default function DiningSlide() {
         autoPlay muted loop playsInline
       />
       <div className="absolute inset-0 z-[1]" style={{
-        background: "linear-gradient(to right, rgba(0,0,0,0.94) 0%, rgba(0,0,0,0.8) 50%, rgba(0,0,0,0.4) 100%)"
+        background: "linear-gradient(to right, rgba(0,0,0,0.94) 0%, rgba(0,0,0,0.88) 50%, rgba(0,0,0,0.82) 100%)"     
       }} />
 
       <div className="slide-inner">
@@ -99,7 +99,7 @@ export default function DiningSlide() {
                   onMouseEnter={() => setHovered(i)}
                   onMouseLeave={() => setHovered(null)}
                   style={{
-                    padding: "0.5rem 0.25rem",
+                    padding: "0.3rem 0.25rem",
                     borderBottom: "1px solid rgba(255,255,255,0.06)",
                     cursor: "none",
                     transition: "all 0.3s ease",
@@ -126,9 +126,9 @@ export default function DiningSlide() {
             initial={{ opacity: 0, x: 20 }}
             animate={{ opacity: inView ? 1 : 0, x: inView ? 0 : 20 }}
             transition={{ delay: 0.7 }}
-            style={{ display: "flex", flexDirection: "column", gap: "0.75rem" }}
+            style={{ display: "flex", flexDirection: "column", gap: "0.4rem" }}
           >
-            <span className="col-label">Why F&B Here Works</span>
+            <span style={{ fontSize: "0.6rem", letterSpacing: "0.25em", textTransform: "uppercase", color: "rgba(255,255,255,0.7)", marginBottom: "0.75rem", display: "block", fontWeight: 500 }}>Why F&B Here Works</span>
 
             {highlights.map((h, i) => (
               <motion.div
@@ -137,7 +137,7 @@ export default function DiningSlide() {
                 animate={{ opacity: inView ? 1 : 0, y: inView ? 0 : 20 }}
                 transition={{ delay: 0.8 + i * 0.15 }}
                 style={{
-                  padding: "1rem",
+                  padding: "0.65rem 0.85rem",
                   border: "1px solid rgba(255,255,255,0.08)",
                   background: "rgba(0,0,0,0.3)",
                 }}

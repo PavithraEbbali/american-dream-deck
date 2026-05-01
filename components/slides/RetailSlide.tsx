@@ -98,7 +98,7 @@ export default function RetailSlide() {
             transition={{ delay: 0.6 }}
           >
             <span className="col-label">Current Tenants</span>
-            <div style={{ display: "flex", flexWrap: "wrap", gap: "0.4rem" }}>
+            <div style={{ display: "flex", flexWrap: "wrap", gap: "0.3rem" }}>
               {tenants.map((tenant, i) => (
                 <motion.span
                   key={tenant}
@@ -107,8 +107,8 @@ export default function RetailSlide() {
                   transition={{ delay: 0.7 + i * 0.03 }}
                   style={{
                     padding: "0.3rem 0.7rem",
-                    border: "1px solid rgba(255,255,255,0.12)",
-                    background: "rgba(255,255,255,0.04)",
+                    border: "1px solid rgba(201,168,76,0.25)",
+                    background: "rgba(201,168,76,0.04)",
                     color: "rgba(255,255,255,0.75)",
                     fontSize: "0.68rem",
                     letterSpacing: "0.04em",
@@ -127,7 +127,7 @@ export default function RetailSlide() {
             transition={{ delay: 0.7 }}
           >
             <span className="col-label">Leasing Opportunities</span>
-            <div style={{ display: "flex", flexDirection: "column", gap: "0.4rem" }}>
+            <div style={{ display: "flex", flexDirection: "column", gap: "0.3rem" }}>
               {categories.map((cat, i) => (
                 <motion.div
                   key={cat.label}
@@ -136,7 +136,7 @@ export default function RetailSlide() {
                   transition={{ delay: 0.8 + i * 0.1 }}
                   onClick={() => setActiveCategory(i)}
                   style={{
-                    padding: "0.85rem 1rem",
+                    padding: "0.6rem 0.85rem",
                     border: `1px solid ${activeCategory === i ? "#C9A84C" : "rgba(255,255,255,0.08)"}`,
                     background: activeCategory === i ? "rgba(201,168,76,0.06)" : "rgba(255,255,255,0.02)",
                     cursor: "none", transition: "all 0.3s ease",

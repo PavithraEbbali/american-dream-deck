@@ -60,8 +60,8 @@ export default function Cursor() {
 
   return (
     <>
-      <div ref={cursorRef} className="cursor" />
-      <div ref={followerRef} className="cursor-follower" />
+      <div ref={cursorRef} className="cursor" style={{ left: "-100px", top: "-100px" }} />
+      <div ref={followerRef} className="cursor-follower" style={{ left: "-100px", top: "-100px" }} />
     </>
   );
 }

@@ -1,7 +1,6 @@
 "use client";
 
-import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 
 interface Props {
   slides: { id: string; label: string }[];
@@ -11,7 +10,7 @@ interface Props {
 }
 
 export default function DeckNav({ slides, currentSlide, onNavigate, onLogoClick }: Props) {
-  const [hovered, setHovered] = useState(false);
+  
 
   return (
     <>
@@ -91,27 +90,8 @@ export default function DeckNav({ slides, currentSlide, onNavigate, onLogoClick 
           <div
             key={slide.id}
             style={{ position: "relative", display: "flex", alignItems: "center" }}
-            onMouseEnter={() => setHovered(true)}
-            onMouseLeave={() => setHovered(false)}
           >
-            <AnimatePresence>
-              {hovered && (
-                <motion.span
-                  initial={{ opacity: 0, x: 10 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  exit={{ opacity: 0, x: 10 }}
-                  style={{
-                    position: "absolute", right: "1rem",
-                    fontSize: "0.55rem", letterSpacing: "0.2em",
-                    textTransform: "uppercase", whiteSpace: "nowrap",
-                    color: "rgba(255,255,255,0.5)"
-                  }}
-                >
-                  {slide.label}
-                </motion.span>
-              )}
-            </AnimatePresence>
-
+            
             <button
               type="button"
               onClick={() => onNavigate(index)}

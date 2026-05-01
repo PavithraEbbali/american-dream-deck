@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 
 interface Props {
@@ -9,27 +9,23 @@ interface Props {
 
 export default function HeroSlide({ onEnter }: Props) {
   const videoRef = useRef<HTMLVideoElement>(null);
-  const [videoLoaded, setVideoLoaded] = useState(false);
 
   useEffect(() => {
-    if (videoRef.current) videoRef.current.play().catch(() => {});
+    const video = videoRef.current;
+    if (!video) return;
+    video.muted = true;
+    video.play().catch(() => {});
   }, []);
 
   return (
-    <div className="slide">
+    <div className="slide" style={{ background: "#0A0A0A" }}>
       <video
         ref={videoRef}
         className="video-bg"
         src="/media/videos/hero.mp4"
         autoPlay muted loop playsInline
-        onCanPlay={() => setVideoLoaded(true)}
+        preload="auto"
       />
-      {!videoLoaded && (
-        <div className="absolute inset-0" style={{
-          backgroundImage: "url('/media/images/hero-bg.jpg')",
-          backgroundSize: "cover", backgroundPosition: "center"
-        }} />
-      )}
       <div className="absolute inset-0 z-[1]" style={{
         background: "linear-gradient(to right, rgba(0,0,0,0.88) 0%, rgba(0,0,0,0.5) 55%, rgba(0,0,0,0.15) 100%)"
       }} />
@@ -133,14 +129,10 @@ export default function HeroSlide({ onEnter }: Props) {
           </button>
         </motion.div>
 
-        {/* Bottom badge — positioned absolutely within slide */}
         <motion.div
           initial={{ opacity: 0 }} animate={{ opacity: 1 }}
           transition={{ delay: 1.6 }}
-          style={{
-            marginTop: "1rem",
-            display: "flex", alignItems: "center", gap: "1rem"
-          }}
+          style={{ marginTop: "1rem", display: "flex", alignItems: "center", gap: "1rem" }}
         >
           <div style={{ width: "1px", height: "36px", background: "rgba(201,168,76,0.3)" }} />
           <div>

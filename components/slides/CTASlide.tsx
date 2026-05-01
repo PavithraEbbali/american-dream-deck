@@ -125,7 +125,7 @@ export default function CTASlide() {
                     {path.title}
                   </span>
                   <span style={{
-                    color: hoveredPath === i ? "#C9A84C" : "rgba(255,255,255,0.2)",
+                    color: hoveredPath === i ? "#C9A84C" : "rgba(255,255,255,0.6)",
                     fontSize: "0.58rem", letterSpacing: "0.1em",
                     textTransform: "uppercase", transition: "color 0.3s ease",
                     whiteSpace: "nowrap", marginLeft: "0.5rem"
@@ -150,8 +150,8 @@ export default function CTASlide() {
             >
               <div>
                 <p style={{
-                  color: "rgba(255,255,255,0.3)", fontSize: "0.5rem",
-                  letterSpacing: "0.2em", textTransform: "uppercase", marginBottom: "0.2rem"
+                  color: "rgba(255,255,255,0.6)", fontSize: "0.55rem",
+                  letterSpacing: "0.15em", textTransform: "uppercase", marginBottom: "0.2rem"
                 }}>
                   Email
                 </p>
@@ -161,8 +161,8 @@ export default function CTASlide() {
               </div>
               <div>
                 <p style={{
-                  color: "rgba(255,255,255,0.3)", fontSize: "0.5rem",
-                  letterSpacing: "0.2em", textTransform: "uppercase", marginBottom: "0.2rem"
+                  color: "rgba(255,255,255,0.6)", fontSize: "0.55rem",
+                  letterSpacing: "0.15em", textTransform: "uppercase", marginBottom: "0.2rem"
                 }}>
                   Location
                 </p>
@@ -349,7 +349,7 @@ export default function CTASlide() {
                   Our team will be in touch within 24 hours.
                 </p>
                 <div style={{ width: "36px", height: "1px", background: "#C9A84C", margin: "1.25rem auto 1rem" }} />
-                <p style={{ color: "rgba(255,255,255,0.2)", fontSize: "0.58rem", letterSpacing: "0.2em", textTransform: "uppercase" }}>
+                <p style={{ color: "#C9A84C", fontSize: "0.6rem", letterSpacing: "0.25em", textTransform: "uppercase" }}>
                   Not a Mall. A Global Stage.
                 </p>
               </motion.div>

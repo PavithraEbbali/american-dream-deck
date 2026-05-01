@@ -181,7 +181,7 @@ export default function EventsSlide() {
             <div>
               <span className="col-label">By The Numbers</span>
 
-              <div style={{ display: "flex", flexDirection: "column", gap: "0.5rem", marginBottom: "1rem" }}>
+              <div style={{ display: "flex", flexDirection: "column", gap: "0.4rem", marginBottom: "0.5rem" }}>
                 {current.stats.map((stat, i) => (
                   <motion.div
                     key={stat.label}
@@ -190,14 +190,14 @@ export default function EventsSlide() {
                     transition={{ delay: i * 0.1 }}
                     style={{
                       display: "flex", alignItems: "center",
-                      gap: "1.25rem", padding: "0.85rem 1rem",
+                      gap: "1.25rem", padding: "0.6rem 1rem",
                       border: "1px solid rgba(255,255,255,0.08)",
                       background: "rgba(0,0,0,0.3)",
                     }}
                   >
                     <span style={{
                       fontFamily: "'Playfair Display', serif",
-                      fontSize: "1.8rem", color: "#C9A84C",
+                      fontSize: "1.5rem", color: "#C9A84C",
                       lineHeight: 1, minWidth: "70px"
                     }}>
                       {stat.number}
